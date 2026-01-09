@@ -7,24 +7,32 @@
 <script src="https://cdn.tailwindcss.com"></script>
 <style>
 body {
-  margin: 0; padding: 0;
-  background: url('https://images.unsplash.com/photo-1590608897129-79a28ee0f722?fit=crop&w=1920&q=80') center/cover no-repeat;
+  margin:0; padding:0;
   font-family: 'Press Start 2P', cursive;
-  overflow-x: hidden;
-  position: relative;
+  background: linear-gradient(to bottom, #0f0c29, #302b63, #24243e);
+  background-image: url('https://images.unsplash.com/photo-1601669291506-bb53a6a0f2b5?fit=crop&w=1920&q=80');
+  background-size: cover;
+  background-position: center;
+  overflow: hidden;
 }
 h1 {
-  color: #fff;
-  text-align: center;
+  text-align:center;
+  font-size:2.5rem;
+  color: #ffea00;
   text-shadow: 0 0 10px #ff0, 0 0 20px #f0f, 0 0 30px #0ff;
-  font-size: 2rem;
-  margin: 20px 0;
+  animation: neonGlow 1.5s ease-in-out infinite alternate;
+  margin-top: 20px;
 }
+@keyframes neonGlow {
+  from { text-shadow: 0 0 5px #ff0,0 0 10px #f0f,0 0 15px #0ff; }
+  to { text-shadow: 0 0 20px #ff0,0 0 40px #f0f,0 0 60px #0ff; }
+}
+
 #reels {
   display: flex;
   justify-content: center;
   gap: 10px;
-  margin-bottom: 20px;
+  margin: 20px 0;
 }
 .reel-column {
   display: flex;
@@ -32,54 +40,100 @@ h1 {
   gap: 5px;
 }
 .reel {
-  width: 70px; height: 70px;
-  background: rgba(0,0,0,0.7);
-  color: white;
-  font-size: 2rem;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border-radius: 12px;
-  box-shadow: 0 0 10px #fff;
-  transition: all 0.3s ease;
+  width:70px; height:70px;
+  background: rgba(0,0,0,0.6);
+  color:white;
+  font-size:2rem;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  border-radius:12px;
+  box-shadow:0 0 10px #fff;
+  transition: transform 0.3s ease;
 }
-.highlight {
-  box-shadow: 0 0 20px #ff0, 0 0 40px #ff0;
-  transform: scale(1.2);
-}
+.highlight { box-shadow:0 0 20px #ff0,0 0 40px #ff0; transform: scale(1.2); }
+
+/* Stickman animado */
 #stickman {
-  position: absolute;
-  top: 20px; right: 20px;
-  font-size: 2.5rem;
-  transition: transform 0.4s ease;
+  position:absolute;
+  bottom:100px;
+  left:50%;
+  transform:translateX(-50%);
+  width:50px;
+  height:100px;
 }
-#confetes {
-  position: absolute;
-  top: 0; left: 0;
-  width: 100%; height: 100%;
-  pointer-events: none;
-  overflow: hidden;
+.head, .body, .arm, .leg, .hat {
+  position:absolute;
+  background:black;
+  transform-origin:center;
 }
-.confete {
-  position: absolute;
-  width: 10px; height: 10px;
-  border-radius: 50%;
-  opacity: 0.9;
-  animation-name: cair;
-  animation-duration: 2s;
-  animation-iteration-count: 1;
+.head { width:20px; height:20px; border-radius:50%; top:0; left:15px; }
+.body { width:5px; height:40px; top:20px; left:22.5px; }
+.arm { width:25px; height:5px; top:25px; left:0; }
+.arm.right { left:25px; }
+.leg { width:5px; height:30px; top:60px; left:0; }
+.leg.right { left:20px; }
+.hat { width:25px; height:10px; top:-10px; left:12.5px; border-radius:3px; background:black; }
+
+/* Animações do stickman */
+@keyframes thumbsUp {
+  0% { transform: rotate(0deg) translateY(0); }
+  50% { transform: rotate(-20deg) translateY(-10px); }
+  100% { transform: rotate(0deg) translateY(0); }
 }
-@keyframes cair {
-  0% { transform: translateY(0) rotate(0deg); }
-  100% { transform: translateY(100vh) rotate(360deg); }
+@keyframes shakeHead {
+  0% { transform: rotate(0deg); }
+  25% { transform: rotate(15deg); }
+  50% { transform: rotate(-15deg); }
+  75% { transform: rotate(15deg); }
+  100% { transform: rotate(0deg); }
 }
+
+/* Confetes */
+#confetti {
+  position:absolute;
+  top:0; left:0;
+  width:100%; height:100%;
+  pointer-events:none;
+  overflow:hidden;
+}
+.confetti {
+  position:absolute;
+  width:10px; height:10px;
+  border-radius:50%;
+  animation-name:confettiFall;
+  animation-duration:1.5s;
+  animation-iteration-count:1;
+}
+@keyframes confettiFall {
+  0% { transform: translateY(0) rotate(0deg); opacity:1; }
+  100% { transform: translateY(800px) rotate(360deg); opacity:0; }
+}
+
+button {
+  cursor:pointer;
+  background:#ff6600;
+  color:#fff;
+  padding:12px 24px;
+  border-radius:12px;
+  font-weight:bold;
+  display:block;
+  margin:10px auto;
+  transition:0.3s;
+}
+button:hover { background:#ff4400; }
+
+#mensagem, #info {
+  text-align:center;
+  color:white;
+  font-weight:bold;
+}
+
 </style>
 </head>
 <body>
 
-<h1>🎰 Cassino do Sheik 🎰</h1>
-
-<div id="stickman">🕴️🎩</div>
+<h1>🎰 Cassino do Sheik</h1>
 
 <div id="reels">
   <div class="reel-column">
@@ -99,70 +153,82 @@ h1 {
   </div>
 </div>
 
-<p class="text-white font-bold mb-4" id="mensagem">Toque para girar</p>
-<button onclick="girar()" class="bg-red-600 hover:bg-red-700 text-white font-bold py-2 px-6 rounded-xl mb-4">GIRAR</button>
-<p class="text-white text-sm mb-2" id="placar">Vitórias: 0 | Moedas: 0</p>
+<div id="stickman">
+  <div class="hat"></div>
+  <div class="head"></div>
+  <div class="body"></div>
+  <div class="arm left"></div>
+  <div class="arm right"></div>
+  <div class="leg left"></div>
+  <div class="leg right"></div>
+</div>
 
-<div id="confetes"></div>
+<button onclick="girar()">GIRAR</button>
 
-<audio id="somGiro" src="https://freesound.org/data/previews/269/269558_5121236-lq.mp3"></audio>
-<audio id="somVitoria" src="https://freesound.org/data/previews/337/337049_3248244-lq.mp3"></audio>
-<audio id="somPerda" src="https://freesound.org/data/previews/92/92374_634166-lq.mp3"></audio>
+<p id="mensagem">Toque para girar</p>
+<p id="info">Vitórias: <span id="vitorias">0</span> | Moedas: <span id="moedas">0</span></p>
+
+<div id="confetti"></div>
+
+<audio id="soundSpin" src="https://freesound.org/data/previews/269/269558_5121236-lq.mp3"></audio>
+<audio id="soundWin" src="https://freesound.org/data/previews/341/341695_62492-lq.mp3"></audio>
+<audio id="soundLose" src="https://freesound.org/data/previews/109/109662_945474-lq.mp3"></audio>
 
 <script>
 const simbolos = ["🐻","👓","🍀","⭐","💎","🍒","🍌","💰"];
-const reels = document.querySelectorAll('.reel');
-const mensagem = document.getElementById('mensagem');
-const placar = document.getElementById('placar');
-const stickman = document.getElementById('stickman');
-const confetesDiv = document.getElementById('confetes');
-const somGiro = document.getElementById('somGiro');
-const somVitoria = document.getElementById('somVitoria');
-const somPerda = document.getElementById('somPerda');
+const reels = document.querySelectorAll(".reel");
+const stickman = document.getElementById("stickman");
+const mensagem = document.getElementById("mensagem");
+const vitoriasSpan = document.getElementById("vitorias");
+const moedasSpan = document.getElementById("moedas");
+const confettiDiv = document.getElementById("confetti");
+const soundSpin = document.getElementById("soundSpin");
+const soundWin = document.getElementById("soundWin");
+const soundLose = document.getElementById("soundLose");
 
 let vitorias = 0;
 let moedas = 0;
 
-function createConfetes() {
+function createConfetti() {
   for(let i=0;i<30;i++){
-    const c = document.createElement('div');
-    c.classList.add('confete');
-    c.style.background = `hsl(${Math.random()*360}, 100%, 50%)`;
-    c.style.left = Math.random()*window.innerWidth+'px';
-    confetesDiv.appendChild(c);
-    setTimeout(()=>c.remove(),2000);
+    const c = document.createElement("div");
+    c.classList.add("confetti");
+    c.style.left = Math.random()*window.innerWidth+"px";
+    c.style.background = `hsl(${Math.random()*360},100%,50%)`;
+    confettiDiv.appendChild(c);
+    setTimeout(()=>c.remove(),1500);
   }
 }
 
 function girar() {
-  somGiro.currentTime=0; somGiro.play().catch(()=>{});
+  soundSpin.currentTime = 0; soundSpin.play();
   mensagem.textContent = "Girando... 🎰";
-  stickman.style.transform="rotate(0deg)";
-  
+
   let resultado = [];
-  reels.forEach((reel,i)=>{
+  reels.forEach((r)=>{
     const s = simbolos[Math.floor(Math.random()*simbolos.length)];
     resultado.push(s);
-    reel.textContent = s;
-    reel.classList.remove('highlight');
+    r.textContent = s;
+    r.style.transform = "rotateY(360deg)";
+    setTimeout(()=>{r.style.transform="rotateY(0deg)";},300);
   });
 
   setTimeout(()=>{
-    const todosIguais = resultado.every(r=>r===resultado[0]);
+    const todosIguais = resultado.every(x=>x===resultado[0]);
     if(todosIguais){
       mensagem.textContent = "💖 TODOS IGUAIS! GRANDE PRÊMIO!";
-      somVitoria.play().catch(()=>{});
-      vitorias++; moedas+=10;
-      reels.forEach(r=>r.classList.add('highlight'));
-      stickman.style.transform="translateY(-10px) rotate(20deg)";
-      createConfetes();
+      vitorias++;
+      moedas+=10;
+      vitoriasSpan.textContent=vitorias;
+      moedasSpan.textContent=moedas;
+      soundWin.play();
+      stickman.style.animation="thumbsUp 0.6s ease forwards";
+      createConfetti();
     } else {
       mensagem.textContent = "😅 Nada feito, tente novamente";
-      somPerda.play().catch(()=>{});
-      stickman.style.transform="rotate(-15deg)";
-      setTimeout(()=>stickman.style.transform="rotate(0deg)",400);
+      soundLose.play();
+      stickman.style.animation="shakeHead 0.6s ease forwards";
     }
-    placar.textContent = `Vitórias: ${vitorias} | Moedas: ${moedas}`;
   },800);
 }
 </script>

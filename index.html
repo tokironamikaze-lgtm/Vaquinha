@@ -25,68 +25,108 @@
       margin-top: 20px;
     }
 
-    /* ===== URSO ===== */
-    .urso {
-      width: 140px;
-      margin: 20px auto;
-      animation: respirar 2s infinite ease-in-out;
-    }
+  <head>
+  <meta charset="UTF-8">
+  <title>Tigrinho</title>
 
-    @keyframes respirar {
-      0%,100% { transform: scale(1); }
-      50% { transform: scale(1.04); }
-    }
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&family=Orbitron:wght@500;700&display=swap" rel="stylesheet">
+</head>
+    
+    /* ===== URSO PREMIUM ===== */
+.urso {
+  width: 200px;
+  margin: 30px auto;
+  filter: drop-shadow(0 15px 20px rgba(0,0,0,0.7));
+  animation: respirar 2.5s infinite ease-in-out;
+}
 
-    .cabeca {
-      width: 140px;
-      height: 120px;
-      background: #8b5a2b;
-      border-radius: 50%;
-      position: relative;
-      margin: auto;
-    }
+@keyframes respirar {
+  0%,100% { transform: scale(1); }
+  50% { transform: scale(1.05); }
+}
 
-    .orelha {
-      width: 40px;
-      height: 40px;
-      background: #8b5a2b;
-      border-radius: 50%;
-      position: absolute;
-      top: -15px;
-    }
+.cabeca {
+  width: 200px;
+  height: 170px;
+  background: linear-gradient(145deg, #9c6b3c, #6f4320);
+  border-radius: 50%;
+  position: relative;
+  margin: auto;
+}
 
-    .orelha.esquerda { left: 10px; }
-    .orelha.direita { right: 10px; }
+.orelha {
+  width: 55px;
+  height: 55px;
+  background: linear-gradient(145deg, #9c6b3c, #6f4320);
+  border-radius: 50%;
+  position: absolute;
+  top: -25px;
+}
 
-    .olho {
-      width: 10px;
-      height: 10px;
-      background: #000;
-      border-radius: 50%;
-      position: absolute;
-      top: 45px;
-    }
+.orelha.esquerda { left: 15px; }
+.orelha.direita { right: 15px; }
 
-    .olho.esquerdo { left: 45px; }
-    .olho.direito { right: 45px; }
+.olho {
+  width: 14px;
+  height: 14px;
+  background: #000;
+  border-radius: 50%;
+  position: absolute;
+  top: 65px;
+}
 
-    .focinho {
-      width: 35px;
-      height: 25px;
-      background: #d2b48c;
-      border-radius: 50%;
-      position: absolute;
-      top: 70px;
-      left: 52px;
-    }
+.olho.esquerdo { left: 70px; }
+.olho.direito { right: 70px; }
 
-    .corpo {
-      width: 100px;
-      height: 110px;
-      background: #7a4a23;
-      border-radius: 40px;
-      margin: -10px auto 0;
-    }
+.focinho {
+  width: 55px;
+  height: 40px;
+  background: #e6c39a;
+  border-radius: 50%;
+  position: absolute;
+  top: 95px;
+  left: 72px;
+}
+
+.focinho::after {
+  content: "";
+  width: 16px;
+  height: 10px;
+  background: #000;
+  border-radius: 50%;
+  position: absolute;
+  top: 8px;
+  left: 20px;
+}
+
+.corpo {
+  width: 140px;
+  height: 150px;
+  background: linear-gradient(145deg, #8a5429, #5c3516);
+  border-radius: 60px;
+  margin: -20px auto 0;
+}
+
+/* ===== REAÇÕES ===== */
+.win {
+  animation: ganhar 0.6s ease-in-out infinite alternate;
+}
+
+@keyframes ganhar {
+  from { transform: translateY(0); }
+  to { transform: translateY(-18px); }
+}
+
+.lose {
+  animation: perder 0.6s ease-in-out infinite;
+}
+
+@keyframes perder {
+  0% { transform: rotate(0deg); }
+  25% { transform: rotate(-7deg); }
+  50% { transform: rotate(7deg); }
+  100% { transform: rotate(0deg); }
+}
 
     /* ANIMAÇÕES DE RESULTADO */
     .win {

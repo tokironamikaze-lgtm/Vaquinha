@@ -1,246 +1,286 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-  <meta charset="UTF-8">
-  <title>Cassino do Tigrinho</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="UTF-8">
+<title>Tigrinho Cassino</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <!-- FONTES -->
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&family=Orbitron:wght@500;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&family=Orbitron:wght@500;700&display=swap" rel="stylesheet">
 
-  <style>
-    body {
-      margin: 0;
-      padding: 0;
-      background: radial-gradient(circle at top, #1a1a2e, #000);
-      font-family: 'Poppins', sans-serif;
-      color: #fff;
-      text-align: center;
-    }
-
-    h1 {
-      font-family: 'Orbitron', sans-serif;
-      color: #ffd700;
-      text-shadow: 0 0 10px #ffd700;
-      margin-top: 20px;
-    }
-
-  <head>
-  <meta charset="UTF-8">
-  <title>Tigrinho</title>
-
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&family=Orbitron:wght@500;700&display=swap" rel="stylesheet">
-</head>
-    
-    /* ===== URSO PREMIUM ===== */
-.urso {
-  width: 200px;
-  margin: 30px auto;
-  filter: drop-shadow(0 15px 20px rgba(0,0,0,0.7));
-  animation: respirar 2.5s infinite ease-in-out;
+<style>
+body{
+  margin:0;
+  min-height:100vh;
+  background:radial-gradient(circle at top,#1a1a2e,#000);
+  font-family:'Poppins',sans-serif;
+  color:#fff;
+  text-align:center;
+}
+h1{
+  margin-top:16px;
+  font-family:'Orbitron',sans-serif;
+  color:#ffd700;
+  text-shadow:0 0 12px #ffd700;
 }
 
-@keyframes respirar {
-  0%,100% { transform: scale(1); }
-  50% { transform: scale(1.05); }
+/* ===== URSO FIXO ===== */
+.urso{
+  position:fixed;
+  right:20px;
+  top:50%;
+  transform:translateY(-50%);
+  width:240px;
+  z-index:10;
+  filter:drop-shadow(0 20px 24px rgba(0,0,0,.8));
+  animation:respirar 2.8s infinite ease-in-out;
+}
+@keyframes respirar{
+  0%,100%{transform:translateY(-50%) scale(1)}
+  50%{transform:translateY(-50%) scale(1.06)}
 }
 
-.cabeca {
-  width: 200px;
-  height: 170px;
-  background: linear-gradient(145deg, #9c6b3c, #6f4320);
-  border-radius: 50%;
-  position: relative;
-  margin: auto;
+/* MOBILE */
+@media(max-width:768px){
+  .urso{
+    position:relative;
+    right:auto;
+    top:auto;
+    transform:none;
+    margin:20px auto;
+  }
 }
 
-.orelha {
-  width: 55px;
-  height: 55px;
-  background: linear-gradient(145deg, #9c6b3c, #6f4320);
-  border-radius: 50%;
-  position: absolute;
-  top: -25px;
+/* ===== CABEÇA ===== */
+.cabeca{
+  width:240px;height:200px;
+  background:linear-gradient(145deg,#9c6b3c,#6f4320);
+  border-radius:50%;
+  position:relative;
+  margin:auto;
+}
+.orelha{
+  width:64px;height:64px;
+  background:linear-gradient(145deg,#9c6b3c,#6f4320);
+  border-radius:50%;
+  position:absolute;
+  top:-30px;
+}
+.orelha.esquerda{left:20px}
+.orelha.direita{right:20px}
+
+/* OLHOS */
+.olho{
+  width:16px;height:16px;
+  background:#000;
+  border-radius:50%;
+  position:absolute;
+  top:78px;
+  animation:piscada 4s infinite;
+}
+.olho.esquerdo{left:86px}
+.olho.direito{right:86px}
+@keyframes piscada{
+  0%,95%,100%{transform:scaleY(1)}
+  97%{transform:scaleY(.1)}
 }
 
-.orelha.esquerda { left: 15px; }
-.orelha.direita { right: 15px; }
-
-.olho {
-  width: 14px;
-  height: 14px;
-  background: #000;
-  border-radius: 50%;
-  position: absolute;
-  top: 65px;
+/* FOCINHO + BOCA */
+.focinho{
+  width:70px;height:50px;
+  background:#e6c39a;
+  border-radius:50%;
+  position:absolute;
+  top:118px;left:85px;
+}
+.nariz{
+  width:18px;height:12px;
+  background:#000;
+  border-radius:50%;
+  margin:8px auto 2px;
+}
+.boca{
+  width:26px;height:14px;
+  border-bottom:4px solid #000;
+  border-radius:0 0 20px 20px;
+  margin:auto;
+  transition:.3s;
+}
+.triste .boca{
+  border-bottom:none;
+  border-top:4px solid #000;
+  border-radius:20px 20px 0 0;
 }
 
-.olho.esquerdo { left: 70px; }
-.olho.direito { right: 70px; }
-
-.focinho {
-  width: 55px;
-  height: 40px;
-  background: #e6c39a;
-  border-radius: 50%;
-  position: absolute;
-  top: 95px;
-  left: 72px;
+/* CORPO */
+.corpo{
+  width:160px;height:170px;
+  background:linear-gradient(145deg,#8a5429,#5c3516);
+  border-radius:80px;
+  margin:-28px auto 0;
 }
 
-.focinho::after {
-  content: "";
-  width: 16px;
-  height: 10px;
-  background: #000;
-  border-radius: 50%;
-  position: absolute;
-  top: 8px;
-  left: 20px;
+/* ===== BALÃO ===== */
+.balao{
+  position:absolute;
+  right:260px;
+  top:40px;
+  background:#fff;
+  color:#000;
+  padding:10px 14px;
+  border-radius:14px;
+  font-weight:700;
+  font-size:.95rem;
+  opacity:0;
+  transform:scale(.8);
+  transition:.3s;
+  box-shadow:0 8px 20px rgba(0,0,0,.4);
 }
-
-.corpo {
-  width: 140px;
-  height: 150px;
-  background: linear-gradient(145deg, #8a5429, #5c3516);
-  border-radius: 60px;
-  margin: -20px auto 0;
+.balao::after{
+  content:"";
+  position:absolute;
+  right:-10px;
+  top:18px;
+  border-width:8px;
+  border-style:solid;
+  border-color:transparent transparent transparent #fff;
+}
+.balao.mostrar{
+  opacity:1;
+  transform:scale(1);
+}
+@media(max-width:768px){
+  .balao{
+    position:relative;
+    right:auto;
+    top:auto;
+    margin:10px auto;
+  }
 }
 
 /* ===== REAÇÕES ===== */
-.win {
-  animation: ganhar 0.6s ease-in-out infinite alternate;
+.win{animation:ganhar .6s ease-in-out infinite alternate}
+@keyframes ganhar{
+  from{transform:translateY(-50%)}
+  to{transform:translateY(-70%)}
+}
+@media(max-width:768px){
+  .win{animation:ganharMobile .6s ease-in-out infinite alternate}
+  @keyframes ganharMobile{
+    from{transform:translateY(0)}
+    to{transform:translateY(-20px)}
+  }
+}
+.lose{animation:perder .6s ease-in-out infinite}
+@keyframes perder{
+  0%{transform:rotate(0)}
+  25%{transform:rotate(-9deg)}
+  50%{transform:rotate(9deg)}
+  100%{transform:rotate(0)}
 }
 
-@keyframes ganhar {
-  from { transform: translateY(0); }
-  to { transform: translateY(-18px); }
+/* ===== SLOT ===== */
+.slot{
+  display:flex;
+  justify-content:center;
+  gap:16px;
+  margin:18px 0;
 }
-
-.lose {
-  animation: perder 0.6s ease-in-out infinite;
+.reel{
+  width:78px;height:78px;
+  background:rgba(0,0,0,.65);
+  border-radius:14px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size:2.2rem;
+  box-shadow:0 0 18px #00ffcc;
 }
-
-@keyframes perder {
-  0% { transform: rotate(0deg); }
-  25% { transform: rotate(-7deg); }
-  50% { transform: rotate(7deg); }
-  100% { transform: rotate(0deg); }
+button{
+  padding:14px 36px;
+  font-size:1.1rem;
+  font-weight:bold;
+  border:none;
+  border-radius:30px;
+  background:linear-gradient(45deg,#ffd700,#ff8c00);
+  color:#000;
+  cursor:pointer;
+  box-shadow:0 0 22px #ffd700;
 }
-
-    /* ANIMAÇÕES DE RESULTADO */
-    .win {
-      animation: ganhar 0.6s ease-in-out infinite alternate;
-    }
-
-    @keyframes ganhar {
-      from { transform: translateY(0); }
-      to { transform: translateY(-10px); }
-    }
-
-    .lose {
-      animation: perder 0.6s ease-in-out infinite;
-    }
-
-    @keyframes perder {
-      0% { transform: rotate(0deg); }
-      25% { transform: rotate(-5deg); }
-      50% { transform: rotate(5deg); }
-      100% { transform: rotate(0deg); }
-    }
-
-    /* ===== JOGO ===== */
-    .slot {
-      display: flex;
-      justify-content: center;
-      gap: 15px;
-      margin: 20px 0;
-    }
-
-    .reel {
-      width: 70px;
-      height: 70px;
-      background: rgba(0,0,0,0.6);
-      border-radius: 12px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 2rem;
-      box-shadow: 0 0 15px #00ffcc;
-    }
-
-    button {
-      padding: 15px 30px;
-      font-size: 1.1rem;
-      font-weight: bold;
-      border: none;
-      border-radius: 30px;
-      background: linear-gradient(45deg, #ffd700, #ff8c00);
-      color: #000;
-      cursor: pointer;
-      box-shadow: 0 0 20px #ffd700;
-    }
-
-    .resultado {
-      margin-top: 15px;
-      font-size: 1.2rem;
-      font-family: 'Orbitron', sans-serif;
-    }
-  </style>
+.resultado{
+  margin-top:14px;
+  font-size:1.25rem;
+  font-family:'Orbitron',sans-serif;
+  min-height:1.5em;
+}
+</style>
 </head>
 
 <body>
 
-  <h1>🐯 TIGRINHO</h1>
+<h1>TIGRINHO</h1>
 
-  <!-- URSO -->
-  <div class="urso" id="urso">
-    <div class="cabeca">
-      <div class="orelha esquerda"></div>
-      <div class="orelha direita"></div>
-      <div class="olho esquerdo olho"></div>
-      <div class="olho direito olho"></div>
-      <div class="focinho"></div>
+<div class="urso" id="urso">
+  <div class="cabeca">
+    <div class="orelha esquerda"></div>
+    <div class="orelha direita"></div>
+
+    <div class="olho esquerdo olho"></div>
+    <div class="olho direito olho"></div>
+
+    <div class="focinho">
+      <div class="nariz"></div>
+      <div class="boca"></div>
     </div>
-    <div class="corpo"></div>
   </div>
 
-  <!-- SLOT -->
-  <div class="slot">
-    <div class="reel" id="r1">🐯</div>
-    <div class="reel" id="r2">🐯</div>
-    <div class="reel" id="r3">🐯</div>
-  </div>
+  <div class="balao" id="balao">Boa!</div>
+  <div class="corpo"></div>
+</div>
 
-  <button onclick="jogar()">GIRAR</button>
+<div class="slot">
+  <div class="reel" id="r1">🐯</div>
+  <div class="reel" id="r2">🐯</div>
+  <div class="reel" id="r3">🐯</div>
+</div>
 
-  <div class="resultado" id="resultado"></div>
+<button onclick="jogar()">GIRAR</button>
+<div class="resultado" id="resultado"></div>
 
-  <script>
-    const simbolos = ["🐯","🍀","💎","🔥"];
-    const urso = document.getElementById("urso");
-    const resultado = document.getElementById("resultado");
+<script>
+const simbolos=["🐯","🍀","💎","🔥"];
+const urso=document.getElementById("urso");
+const resultado=document.getElementById("resultado");
+const balao=document.getElementById("balao");
+const r1El=document.getElementById("r1");
+const r2El=document.getElementById("r2");
+const r3El=document.getElementById("r3");
 
-    function jogar() {
-      urso.classList.remove("win","lose");
+function jogar(){
+  urso.classList.remove("win","lose","triste");
+  balao.classList.remove("mostrar");
 
-      const r1 = simbolos[Math.floor(Math.random()*simbolos.length)];
-      const r2 = simbolos[Math.floor(Math.random()*simbolos.length)];
-      const r3 = simbolos[Math.floor(Math.random()*simbolos.length)];
+  const r1=simbolos[Math.floor(Math.random()*simbolos.length)];
+  const r2=simbolos[Math.floor(Math.random()*simbolos.length)];
+  const r3=simbolos[Math.floor(Math.random()*simbolos.length)];
 
-      document.getElementById("r1").innerText = r1;
-      document.getElementById("r2").innerText = r2;
-      document.getElementById("r3").innerText = r3;
+  r1El.innerText=r1;
+  r2El.innerText=r2;
+  r3El.innerText=r3;
 
-      if (r1 === r2 && r2 === r3) {
-        resultado.innerText = "VOCÊ GANHOU!";
-        urso.classList.add("win");
-      } else {
-        resultado.innerText = "se fudeo";
-        urso.classList.add("lose");
-      }
-    }
-  </script>
+  if(r1===r2 && r2===r3){
+    resultado.innerText="VOCÊ GANHOU!";
+    urso.classList.add("win");
+    balao.innerText="BOA! 🎉";
+  }else{
+    resultado.innerText="TENTE DE NOVO";
+    urso.classList.add("lose","triste");
+    balao.innerText="QUE PENA…";
+  }
+
+  balao.classList.add("mostrar");
+  setTimeout(()=>balao.classList.remove("mostrar"),2000);
+}
+</script>
 
 </body>
 </html>
